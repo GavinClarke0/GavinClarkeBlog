@@ -1,0 +1,15 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Build a simple static website from markdown and a binary only golang server",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@markdoc/markdoc": "^0.1.2"
+  }
+}
