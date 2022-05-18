@@ -52,6 +52,9 @@ func main() {
 	e := echo.New()
 	e.Use(middleware.Recover())
 	e.Use(middleware.Logger())
+	e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
+		Level: 5,
+	}))
 	var contentHandler = echo.WrapHandler(http.FileServer(http.FS(fs)))
 	var contentRewrite = middleware.Rewrite(map[string]string{"/*": "/html/$1"}) // map the html folder to
 	e.GET("/*", contentHandler, contentRewrite)
