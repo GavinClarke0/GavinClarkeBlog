@@ -61,7 +61,7 @@ func main() {
 	e.GET("/*", contentHandler, contentRewrite)
 	e.GET("/view/:id", metrics)
 
-	e.AutoTLSManager.Cache = autocert.DirCache("/var/www/.cache")
+	e.AutoTLSManager.Cache = autocert.DirCache("/home/.cache")
 	e.Logger.Fatal(e.StartAutoTLS(":443"))
 }
 
