@@ -52,6 +52,7 @@ func main() {
 	e := echo.New()
 	e.Use(middleware.Recover())
 	e.Use(middleware.Logger())
+	e.Use(middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(20)))
 	e.Use(middleware.GzipWithConfig(middleware.GzipConfig{
 		Level: 5,
 	}))
@@ -67,7 +68,10 @@ func main() {
 func metrics(c echo.Context) error {
 
 	pathId := c.Param("id")
-	page, _ := base64.StdEncoding.DecodeString(pathId)
+	page, err := base64.StdEncoding.DecodeString(pathId)
+	if err != nil {
+		return c.NoContent(http.StatusBadRequest)
+	}
 
 	ip, _, err := net.SplitHostPort(c.Request().RemoteAddr)
 	if err != nil {
