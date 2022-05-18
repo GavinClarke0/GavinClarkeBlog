@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <style>
+        @media (max-width: 600px) {
+            body {margin: 10px;}
+        }
+
+        @media (min-width: 600px) {
+            body {max-width: 1000px;
+                margin: auto;}
+        }
+        a:link {color: black;}      /* unvisited link */
+        a:visited {color: rgba(30, 29, 29, 0.99);}   /* visited link */
+        a:hover {color: rgba(30, 29, 29, 0.99);}    /* mouse over link */
+        a:active {color: rgba(30, 29, 29, 0.99);}   /* selected link */
+        body {background-color: #fff1e5; margin-top: 20px; margin-bottom: 20px;}
+        h1   {color: #000000; font-family: Georgia,serif}
+        h2   {color: #000000; font-family: Georgia,serif}
+        h3   {color: #000000; font-family: Georgia,serif}
+        h4   {color: #000000; font-family: Georgia,serif}
+        p    {color: #000000; font-family: Georgia,serif}
+        title    {color: #000000; font-family: Georgia,serif}
+
+        .row {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            border-style: solid none solid none;
+            border-width: 1px;
+            /* justify-content: space-between; for space in between */
+        }
+        .block {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta charset="UTF-8">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        /* This function simply sends a view event on page view. No other tracking is implemented, this is simply for myself
+        to determine how popular a page is even when the paged is cached by a cdn.
+         */
+        function sendViewEvent() {
+            let currentPage = window.location.pathname
+            let currentPageBase64 = btoa(currentPage)
+            axios.get(`/view/${currentPageBase64}`).then(function (_) {})
+        }
+        sendViewEvent()
+    </script>
 </head>
-<body>
-$END$
-</body>
-</html>

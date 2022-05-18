@@ -1,0 +1,3 @@
+#!/bin/zsh
+node build.js
+go run server/main.go
