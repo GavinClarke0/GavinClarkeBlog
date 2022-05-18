@@ -3,13 +3,11 @@ package main
 import (
 	"Blog/ent"
 	"context"
-	"crypto/tls"
 	"embed"
 	"encoding/base64"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
-	"golang.org/x/crypto/acme"
 	"net"
 	"net/http"
 	"time"
@@ -57,34 +55,10 @@ func main() {
 	var contentHandler = echo.WrapHandler(http.FileServer(http.FS(fs)))
 	var contentRewrite = middleware.Rewrite(map[string]string{"/*": "/html/$1"}) // map the html folder to
 	e.GET("/*", contentHandler, contentRewrite)
-	//e.GET("/recent-posts", recentPosts)
 	e.GET("/view/:id", metrics)
 
-	autoTLSManager := autocert.Manager{
-		Prompt: autocert.AcceptTOS,
-		// Cache certificates to avoid issues with rate limits (https://letsencrypt.org/docs/rate-limits)
-		Cache: autocert.DirCache("/var/www/.cache"),
-		//HostPolicy: autocert.HostWhitelist("<DOMAIN>"),
-	}
-	s := http.Server{
-		Addr:    ":443",
-		Handler: e, // set Echo as handler
-		TLSConfig: &tls.Config{
-			GetCertificate: autoTLSManager.GetCertificate,
-			NextProtos:     []string{acme.ALPNProto},
-		},
-		//ReadTimeout: 30 * time.Second, // use custom timeouts
-	}
-
-	if err := s.ListenAndServe(); err != http.ErrServerClosed {
-		e.Logger.Fatal(err)
-	}
-
-	/*
-		if err := s.ListenAndServeTLS("", ""); err != http.ErrServerClosed {
-			e.Logger.Fatal(err)
-		}
-	*/
+	e.AutoTLSManager.Cache = autocert.DirCache("/var/www/.cache")
+	e.Logger.Fatal(e.StartAutoTLS(":443"))
 }
 
 func metrics(c echo.Context) error {
