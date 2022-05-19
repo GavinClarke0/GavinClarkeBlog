@@ -3,24 +3,30 @@
 <head>
     <style>
         @media (max-width: 600px) {
-            body {margin: 10px;}
+            body {margin: 10px; padding: 10px}
         }
 
         @media (min-width: 600px) {
             body {max-width: 1000px;
-                margin: auto;}
+                margin: auto;
+                padding: 10px;}
         }
-        a:link {color: black;}      /* unvisited link */
-        a:visited {color: rgba(30, 29, 29, 0.99);}   /* visited link */
-        a:hover {color: rgba(30, 29, 29, 0.99);}    /* mouse over link */
-        a:active {color: rgba(30, 29, 29, 0.99);}   /* selected link */
+        a:link {color: black; text-decoration: none; font-weight: bold; }      /* unvisited link */
+        a:visited {color: rgba(30, 29, 29, 0.99); text-decoration: none; font-weight: bold; }   /* visited link */
+        a:hover {color: rgba(30, 29, 29, 0.99); text-decoration: none; font-weight: bold; }    /* mouse over link */
+        a:active {color: rgba(30, 29, 29, 0.99); text-decoration: none; font-weight: bold; }   /* selected link */
         body {background-color: #fff1e5; margin-top: 20px; margin-bottom: 20px;}
         h1   {color: #000000; font-family: Georgia,serif}
         h2   {color: #000000; font-family: Georgia,serif}
         h3   {color: #000000; font-family: Georgia,serif}
         h4   {color: #000000; font-family: Georgia,serif}
         p    {color: #000000; font-family: Georgia,serif}
-        title    {color: #000000; font-family: Georgia,serif}
+        pre    {background-color: white; padding: 12px; border-radius: 12px;}
+        title    {color: #000000; font-family: Georgia,serif }
+
+        hr { display: block; height: 1px;
+            border: 0; border-top: 1px solid #000000;
+            margin: 1em 0; padding: 0; }
 
         .row {
             width: 100%;
@@ -35,9 +41,6 @@
             margin-right: 10px;
         }
     </style>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
-    <meta http-equiv="Pragma" content="no-cache"/>
-    <meta http-equiv="Expires" content="0"/>
     <meta charset="UTF-8">
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -57,11 +60,13 @@
 </head>
 <body><h2 style="text-align: center;"> Gavin Clarke</h2>
 <div class="row">
+    <h4 class="block"><a href="/wiki.html">Wiki</a></h4>
     <h4 class="block"><a href="/technology.html">Technology</a></h4>
     <h4 class="block"><a href="/markets.html">Markets</a></h4>
     <h4 class="block"><a href="/climbing.html">Climbing</a></h4>
-    <h4 class="block"><a href="/wiki.html">Wiki</a></h4>
 </div>
 <article><h1>Hello world.</h1><blockquote><p>My first Markdoc page</p></blockquote></article>
-<div>footer</div>
+<div>
+    <hr>
+</div>
 </body></html>

@@ -62,7 +62,8 @@ func main() {
 	e.GET("/view/:id", metrics)
 
 	e.AutoTLSManager.Cache = autocert.DirCache("/home/blog/.cache")
-	e.Logger.Fatal(e.StartAutoTLS(":443"))
+	//e.Logger.Fatal(e.StartAutoTLS(":443"))
+	e.Logger.Fatal(e.Start(":443"))
 }
 
 func metrics(c echo.Context) error {
