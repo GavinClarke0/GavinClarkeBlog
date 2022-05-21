@@ -1,3 +1,4 @@
 #!/bin/bash
+go build server/main.go
 etcap cap_net_bind_service=+ep server/main
 . server/main -serverMode=prod
