@@ -1,0 +1,3 @@
+#!/bin/bash
+etcap cap_net_bind_service=+ep server/main
+. server/main -serverMode=prod
