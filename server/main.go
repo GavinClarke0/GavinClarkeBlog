@@ -34,7 +34,7 @@ var client *ent.Client
 func main() {
 
 	var err error
-	var mode = flag.String("serverMode", "prod", "set server mode")
+	var mode = *flag.String("serverMode", "build", "set server mode")
 	flag.Parse()
 
 	// VIEW WORKER
@@ -67,8 +67,8 @@ func main() {
 
 	e.AutoTLSManager.Cache = autocert.DirCache("/home/blog/.cache")
 
-	switch *mode {
-	case "prod":
+	switch mode {
+	case "build":
 		e.Logger.Fatal(e.StartAutoTLS(":443"))
 		return
 	case "dev":
