@@ -34,7 +34,8 @@ var client *ent.Client
 func main() {
 
 	var err error
-	mode := flag.String("server_mode", "prod", "set server mode")
+	var mode = flag.String("serverMode", "prod", "set server mode")
+	flag.Parse()
 
 	// VIEW WORKER
 	viewEventsChan = make(chan viewEvent, 64) // ambitiously large view event channel
