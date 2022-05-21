@@ -3,6 +3,9 @@ title: Reducing python string parsing time 100x with rust
 date: "2021-04-25T22:40:32.169Z"
 ---
 
+*april 2021*
+
+
 Recently my work focused on the development of IBM's LSF simulator. LSF is a workload scheduler for HPC and one of the
 problems we were aiming to solve is how to simulate the running of large HPC clusters. Like many products, especially
 those who's inception was 15+ years ago, a custom logging format is used.  These log files can have millions of
@@ -124,8 +127,8 @@ for the vector.
 ### The results...
 
 ```
-length rust:    0.0001556873321533203
-length cPython: 0.0000987052917480468
+length rust:    0.0001556873321533203 sec
+length cPython: 0.0000987052917480468 sec
 ```
 > This is for 681 words separated by spaces and containing only US-ASCII characters on a Octa-Core, 8 x 2,4 GHz Turbo with 16gb Ram
 
