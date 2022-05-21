@@ -5,6 +5,7 @@ import (
 	"context"
 	"embed"
 	"encoding/base64"
+	"flag"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
@@ -33,12 +34,14 @@ var client *ent.Client
 func main() {
 
 	var err error
-	// ambitiously large view event channel
-	viewEventsChan = make(chan viewEvent, 64)
+	mode := flag.String("server_mode", "prod", "set server mode")
+
+	// VIEW WORKER
+	viewEventsChan = make(chan viewEvent, 64) // ambitiously large view event channel
 	go eventWorker()
 
 	// DB create and auto migration.
-	client, err = ent.Open("sqlite3", "file:blog?mode=memory&cache=shared&_fk=1")
+	client, err = ent.Open("sqlite3", "file:./blog.db?&_fk=1&cache=shared")
 	if err != nil {
 		panic(err)
 	}
@@ -62,8 +65,17 @@ func main() {
 	e.GET("/view/:id", metrics)
 
 	e.AutoTLSManager.Cache = autocert.DirCache("/home/blog/.cache")
-	//e.Logger.Fatal(e.StartAutoTLS(":443"))
-	e.Logger.Fatal(e.Start(":443"))
+
+	switch *mode {
+	case "prod":
+		e.Logger.Fatal(e.StartAutoTLS(":443"))
+		return
+	case "dev":
+		e.Logger.Fatal(e.Start(":443"))
+		return
+	default:
+		panic("invalid mode passed")
+	}
 }
 
 func metrics(c echo.Context) error {
@@ -95,7 +107,7 @@ func eventWorker() {
 
 	defer func() {
 		if r := recover(); r != nil {
-			log.Error("Rrecovered from panic", r)
+			log.Error("Recovered from panic", r)
 		}
 	}()
 
