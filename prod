@@ -1,4 +1,4 @@
 #!/bin/bash
 go build server/main.go
-setcap cap_net_bind_service=+ep main
+sudo setcap cap_net_bind_service=+ep main
 ./main -serverMode=prod
