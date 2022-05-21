@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @media (max-width: 600px) {
+            body {margin: 10px; padding: 10px}
+        }
+
+        @media (min-width: 600px) {
+            body {max-width: 1000px;
+                margin: auto;
+                padding: 10px;}
+        }
+        a:link {color: black; text-decoration: none; font-weight: bold; }      /* unvisited link */
+        a:visited {color: rgba(30, 29, 29, 0.99); text-decoration: none; font-weight: bold; }   /* visited link */
+        a:hover {color: rgba(30, 29, 29, 0.99); text-decoration: none; font-weight: bold; }    /* mouse over link */
+        a:active {color: rgba(30, 29, 29, 0.99); text-decoration: none; font-weight: bold; }   /* selected link */
+        body {background-color: #fff1e5; margin-top: 20px; margin-bottom: 20px;}
+        h1   {color: #000000; font-family: Georgia,serif}
+        h2   {color: #000000; font-family: Georgia,serif}
+        h3   {color: #000000; font-family: Georgia,serif}
+        h4   {color: #000000; font-family: Georgia,serif}
+        p    {color: #000000; font-family: Georgia,serif}
+        pre    {background-color: white; padding: 12px; border-radius: 12px;}
+        title    {color: #000000; font-family: Georgia,serif }
+
+        hr { display: block; height: 1px;
+            border: 0; border-top: 1px solid #000000;
+            margin: 1em 0; padding: 0; }
+
+        .row {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            border-style: solid none solid none;
+            border-width: 1px;
+            /* justify-content: space-between; for space in between */
+        }
+        .block {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        /* This function simply sends a view event on page view. No other tracking is implemented, this is simply for myself
+        to determine how popular a page is even when the paged is cached by a cdn.
+         */
+        function sendViewEvent() {
+            let currentPage = window.location.pathname
+            let currentPageBase64 = btoa(currentPage)
+            axios.get(`/view/${currentPageBase64}`).then(function (_) {})
+        }
+        sendViewEvent()
+    </script>
+</head>
+<body><h2 style="text-align: center;"> Gavin Clarke</h2>
+<div class="row">
+    <h4 class="block"><a href="/wiki.html">Wiki</a></h4>
+    <h4 class="block"><a href="/technology.html">Technology</a></h4>
+    <h4 class="block"><a href="/markets.html">Markets</a></h4>
+    <h4 class="block"><a href="/climbing.html">Climbing</a></h4>
+</div>
+<article><h1>Lessons On Market Dynamics And Factors</h1><p>This document is living and subject to change. The idea's on monopolistic competition and value capture are largely derived from the earlier chapters of Peter Thiel's <em>Zero to one</em> and predictive analysis of entities from Marko Papic's <em>Geopolitical alpha</em>. Additional resources and inspiration is also employed.</p><p>This is a framework first and foremost for myself and thus may not be academically rigorous or tested for the purpose of making predictions about future events in relation to markets, such as the success of an entity or idea in a market or the affect of geopolitical events on a market or entity.</p><h1>Monopolies and Value</h1><p>All entities be they businesses or nations exist in relation to each other and depending on this relation and their interests compete to capture value. As value capture is diverse, and the world ever-changing humans seek new methods of capturing value. Those that are most successful as proposed in <em>Zero to One</em> exists as monopolies of a market.</p><h3>Monopolies and success in a market</h3><p>The only two ways to gain success in a domain, measured monetarily or in any metric that is not independent i.e. this does apply to your 5km time unless you are in a race, can be achieved is through monopolization or out-competing competition. Value capturing and durable entities are often monopolies as a lack/reduction of competition prevents the race to zero of perfect competition.</p><p>The size of the available market as well as the difficulty to compete (see predictive constraints) determines the possible reward or value capture available. The larger market, and often pre established, may allow a greater total reward, however if you are unable to out-compete with a non-replicable differentiation or monopoly of technology, branding, economies of scale or network, which itself are monopolies on at least some subset of the market, than the cost of competing will likely outweigh the potential to capture a total amount of value. In essence an entity and it's value is defined by the total market it is able to monopolize, not the size of the market it is competing for.</p><p>In essence these are old lessons repeated, where the age-old advice of differentiation is enhanced to include what allows value to be captured, which is the ability to create or find a market which you do not have to compete in.</p><p>The current definition likely makes you think of the standard oil, and it's grasp on the american oil trade at the turn of the 20th century. Monopolies often exist in more subtle ways and often try to hide this fact and may have even created the market itself. For example as given in <em>Zero To One</em> is Google's monopoly on search advertising, which it essentially created through both a monopoly on technology and creating the market (other early players were destroyed), is often rephrased as a non-monopoly on all advertising to distract from the fact they do hold a monopoly.</p><p>The main point is to succeed in any competitive field you either must hold a monopoly or out-compete which is often a monopoly on aspect in its own right.</p><h3>Value Capture</h3><p>Even if you have a monopoly on a market, if you cannot capture value from it the market is useless. Usually monopolies allow a great percentage of value capture, however this is not always the case.</p><h3>How to determine if an entity has a monopoly</h3><h1>The role of constraints in markets and the world</h1><h3>How to identity market constraints</h3><h3>The role of market preferences vrs constrains</h3><h3>How to predict thr affect of constraints on a market</h3><p>Question 1,2,3</p><h3>How to identify monopolies or monopolistic opportunities from constraints and market dynamics</h3></article>
+<div>
+    <hr>
+</div>
+</body></html>
