@@ -1,4 +1,4 @@
 #!/bin/bash
-node build.js # generate html pages
+#node build.js # generate html pages
 go build server/main.go # build server binary
 sudo setcap cap_net_bind_service=+ep main # give server binary permission to bind port 443
